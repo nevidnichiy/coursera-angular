@@ -4,9 +4,7 @@ angular.module('NarrowItDownApp', [])
     .controller('NarrowItDownController', NarrowItDownController)
     .service('MenuSearchService', MenuSearchService)
     .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
-    .directive('foundItems', FoundItemsDirective)
-    ;
-    
+    .directive('foundItems', FoundItemsDirective);
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 MenuSearchService.$inject = ['$http', 'ApiBasePath', '$filter'];
@@ -18,7 +16,6 @@ function NarrowItDownController(MenuSearchService) {
         var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm);
         promise.then(function (response) {
             menu.found = response;
-            console.log(menu.found);  
         })
         .catch(function (error) {
             console.log("Something went wrong.");
@@ -26,11 +23,9 @@ function NarrowItDownController(MenuSearchService) {
     };
     
     menu.removeItem = function (itemIndex) {
-        console.log('fired');
         menu.found.splice(itemIndex, 1);
     };
-    
-    
+
 }    
 
 function MenuSearchService($http, ApiBasePath, $filter) {
@@ -41,6 +36,9 @@ function MenuSearchService($http, ApiBasePath, $filter) {
             method: "GET",
             url: (ApiBasePath + "/menu_items.json")
         }).then(function (result) {
+            if(searchTerm == "") {
+			    return [];
+			}
             var foundItems = $filter('filter')(result.data.menu_items, {description:searchTerm});
             return foundItems;
         });

@@ -8,10 +8,12 @@
       </div>
     <div class="menu-item-description">
       <h3 class="menu-item-title">{{item.name}}
-          <button class="btn btn-warning btn-sm" ng-click="onRemove({index: $index});">Remove Item</button>
+          <button class="btn btn-warning btn-sm" ng-click="onRemove({index: $index});">Don't want this one!</button>
       </h3>          
       <p class="menu-item-details">{{item.description}}</p>
     </div>
   </div>
   <hr>
 </div>
+<br>
+<h2 ng-if="items.length == 0">Nothing found</h2>
