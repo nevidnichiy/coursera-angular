@@ -10,9 +10,11 @@
         <h4>{{infoCtrl.userInfo.phone}}</h4>
         <h4>{{infoCtrl.userInfo.email}}</h4>
         <br>
-        <h4>Favorite menu^</h4>
-        <h5>{{infoCtrl.userInfo.menu.name}}</h5>
-        <p>{{infoCtrl.userInfo.menu.description}}</p>
-        <img width="250" height="150" ng-src="https://rsilini-course5.herokuapp.com/images/{{infoCtrl.userInfo.menu.short_name}}.jpg" alt="">        
+        <div ng-show="infoCtrl.userInfo.menu.name">
+            <h4>Favorite menu:</h4>
+            <h5>{{infoCtrl.userInfo.menu.name}}</h5>
+            <p>{{infoCtrl.userInfo.menu.description}}</p>
+            <img width="250" height="150" ng-src="https://rsilini-course5.herokuapp.com/images/{{infoCtrl.userInfo.menu.short_name}}.jpg" alt="">                    
+        </div>
     </div>
 </div>

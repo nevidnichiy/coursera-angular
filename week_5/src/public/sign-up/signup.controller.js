@@ -8,23 +8,22 @@ SignupController.$inject = ['MenuDataService'];
 function SignupController(MenuDataService) {
   var $ctrl = this;
   $ctrl.submit = function() {
-
-    MenuDataService.getItem($ctrl.user.dishCode.toUpperCase() || "") 
+  MenuDataService.user = $ctrl.user;
+  if ($ctrl.user.dishCode) {
+    MenuDataService.getItem($ctrl.user.dishCode || "") 
       .then(function(response) {
-          console.log("was able to access short name " + $ctrl.user.dishCode);
           $ctrl.found = true;
           $ctrl.user.menu = response.data;
-          MenuDataService.user = $ctrl.user;
           $ctrl.saved = true;
-          console.log(MenuDataService.user);
           return response.data;
       }).catch(function(error) {
-          console.log("error access short name " + $ctrl.user.dishCode);
           $ctrl.found = false;
           $ctrl.dishNotfound = true;
           return error;
       });
-
+} else {
+      $ctrl.saved = true;
+}
   };
   
 }
