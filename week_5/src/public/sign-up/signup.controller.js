@@ -15,6 +15,7 @@ function SignupController(MenuDataService) {
           $ctrl.found = true;
           $ctrl.user.menu = response.data;
           $ctrl.saved = true;
+          $ctrl.dishNotfound = false;
           return response.data;
       }).catch(function(error) {
           $ctrl.found = false;

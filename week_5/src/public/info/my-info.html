@@ -2,7 +2,7 @@
     <h1>User Info</h1>    
     
     <span ng-if="!infoCtrl.userInfo.firstName">
-         Not Signed Up Yet. Sign up Now!
+         Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
     </span>
     <div ng-show="infoCtrl.userInfo.firstName">
         <h3>{{infoCtrl.userInfo.firstName}}</h3>
